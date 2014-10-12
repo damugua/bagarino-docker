@@ -21,12 +21,26 @@ Note: if you run docker within a VM (e.g. VirtualBox, Vagrant, etc) your client 
 You can now connect to your docker container with SSH. You can connect as "root/bagarino" or as "bagarino/bagarino", and we recommand you use the "bagarino" user as some of the tool used are not meant to be run by the root user.
 
 Start by adding your SSH public key to the Docker container:
-
+```
 cat ~/.ssh/id_rsa.pub | ssh -p 4022 bagarino@localhost 'mkdir ~/.ssh && cat >> ~/.ssh/authorized_keys'
+```
 
 You can now connect to the Docker container:
-
+```
 ssh -p 4022 bagarino@localhost
+```
+
+## Create a new version of the image
+Clone this repo
+```
+git clone https://github.com/exteso/bagarino-docker bagarino-docker
+cd bagarino-docker
+```
+
+Apply all the changes to the Dockerfile and then rebuild the image with a new version:
+```
+docker build -t exteso/bagarino:VERSION .
+```
 
 ## Containers
 
