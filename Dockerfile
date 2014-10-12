@@ -48,7 +48,7 @@ RUN cd /home/bagarino && \
 
 #RUN cd /home/bagarino/workspace && npm install
 RUN cd /home && chown -R bagarino:bagarino /home/bagarino
-RUN cd /home/bagarino/workspace && sudo -u bagarino mvn clean install
+RUN cd /home/bagarino/workspace && mvn clean install
 RUN cd /home && chown -R bagarino:bagarino /home/bagarino
 
 # expose the working directory, the Tomcat port, the Grunt server port, livereload port, the SSHD port, and run SSHD
@@ -58,4 +58,4 @@ EXPOSE 9000
 EXPOSE 35729
 EXPOSE 22
 CMD    /usr/sbin/sshd -D
-CMD cd /home/bagarino/workspace && mvn jetty:run &
+CMD    cd /home/bagarino/workspace && mvn jetty:run 
