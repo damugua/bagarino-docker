@@ -9,7 +9,7 @@ Note: On OS X I recommend to follow [this](http://viget.com/extend/how-to-use-do
 ### Start the applicaation
 Launch Bagarino docker image
 ```
-docker run -d -v ~/bagarino/:/bagarino-volume -p 8080:8080 -p 9000:9000 -p 35729:35729 -p 4022:22 -t exteso/bagarino:0.3
+docker run -d -v ~/bagarino/:/bagarino-volume -p 8080:8080 -p 9000:9000 -p 35729:35729 -p 4022:22 -t exteso/bagarino:0.3.1
 ```
 
 ### Test the instance
