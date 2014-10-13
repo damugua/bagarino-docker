@@ -9,7 +9,8 @@ Note: On OS X I recommend to follow [this](http://viget.com/extend/how-to-use-do
 ### Start the applicaation
 Launch Bagarino docker image
 ```
-docker run -d -v ~/bagarino/:/bagarino-volume -p 8080:8080 -p 9000:9000 -p 35729:35729 -p 4022:22 -t exteso/bagarino:0.3.1
+docker pull yankedev/bagarino-docker
+docker run -d -v ~/bagarino/:/bagarino-volume -p 8080:8080 -p 9000:9000 -p 35729:35729 -p 4022:22 -t yankedev/bagarino-docker
 ```
 
 ### Test the instance
@@ -17,7 +18,7 @@ From your client machine open your browser to localhost:8080/admin
 
 Note: if you run docker within a VM (e.g. VirtualBox, Vagrant, etc) your client is within the VM itself. If you want to connect from your physical machine, verify VM settings are forward ports to it.
 
-### SSH configuration (not working in v0.3)
+### SSH configuration (currently not working :-()
 You can now connect to your docker container with SSH. You can connect as "root/bagarino" or as "bagarino/bagarino", and we recommand you use the "bagarino" user as some of the tool used are not meant to be run by the root user.
 
 Start by adding your SSH public key to the Docker container:
@@ -35,9 +36,12 @@ Clone this repo
 ```
 git clone https://github.com/exteso/bagarino-docker bagarino-docker
 cd bagarino-docker
+git commit -m "COMMIT MESSAGE"
 ```
+A new bagarino docker image is automatically build at https://registry.hub.docker.com/u/yankedev/bagarino-docker/.
+You can find this image on the docker hub.
 
-Apply all the changes to the Dockerfile and then rebuild the image with a new version:
+Otherwise you can also build a local image using the following command:
 ```
 docker build -t exteso/bagarino:VERSION .
 ```
