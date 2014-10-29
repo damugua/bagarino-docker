@@ -52,7 +52,7 @@ RUN cd /home/bagarino/workspace && mvn clean install
 RUN cd /home && chown -R bagarino:bagarino /home/bagarino
 
 #Add and execute git pull in a script with always-changing-filename to skip the cache
-ENV VARIABLE update-1414606998.sh 
+ENV VARIABLE update-xxxxxxxxxxx.sh 
 ADD update.sh $VARIABLE
 RUN /bin/sh $VARIABLE
 

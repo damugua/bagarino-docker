@@ -1,22 +1,29 @@
 # Create a Docker image to run Bagarino as server 
 
+## Pre-requisite
+Install [Docker](https://docs.docker.com/installation/).
+> Note: On OS X I recommend to follow [this](http://viget.com/extend/how-to-use-docker-on-os-x-the-missing-guide) guide. Chris knows what he is doing!
+
 ## TL;DR, I just want an instance up-and-running
 
-### Pre-requisite
-Install [Docker](https://docs.docker.com/installation/).
-Note: On OS X I recommend to follow [this](http://viget.com/extend/how-to-use-docker-on-os-x-the-missing-guide) guide. Chris knows what he is doing!
-
-### Start the applicaation
-Launch Bagarino docker image
+### Start the application
+Launch Bagarino docker image from docker hub
 ```
 docker pull yankedev/bagarino-docker
 docker run -d -v ~/bagarino/:/bagarino-volume -p 8080:8080 -p 9000:9000 -p 35729:35729 -p 4022:22 -t yankedev/bagarino-docker
 ```
 
-### Test the instance
-From your client machine open your browser to localhost:8080/admin
+Latest version of this image is continuosly rebuilt at every push on the master branch of bagarino-docker. 
+Otherwise, on docker hub you can also find the build now button: see https://registry.hub.docker.com/u/yankedev/bagarino-docker/ 
 
-Note: if you run docker within a VM (e.g. VirtualBox, Vagrant, etc) your client is within the VM itself. If you want to connect from your physical machine, verify VM settings are forward ports to it.
+### Test the instance
+```
+docker ps
+docker logs CONTAINER_ID
+```
+From your client machine open your browser to http://localhost:8080/admin
+
+> Note: if you run docker within a VM (e.g. VirtualBox, Vagrant, etc) your client is within the VM itself. If you want to connect from your physical machine, verify VM settings are forward ports to it.
 
 ### SSH configuration (currently not working :-()
 You can now connect to your docker container with SSH. You can connect as "root/bagarino" or as "bagarino/bagarino", and we recommand you use the "bagarino" user as some of the tool used are not meant to be run by the root user.
@@ -32,18 +39,9 @@ ssh -p 4022 bagarino@localhost
 ```
 
 ## Create a new version of the image
-Clone this repo
+You can build a local image using the following command:
 ```
-git clone https://github.com/exteso/bagarino-docker bagarino-docker
-cd bagarino-docker
-git commit -m "COMMIT MESSAGE"
-```
-A new bagarino docker image is automatically build at https://registry.hub.docker.com/u/yankedev/bagarino-docker/.
-You can find this image on the docker hub.
-
-Otherwise you can also build a local image using the following command:
-```
-docker build -t exteso/bagarino:VERSION .
+./build.sh
 ```
 
 ## Containers
@@ -71,7 +69,7 @@ Notes:
 
 ### Entering a Docker Container
 
-I know using an `sshd` daemon is [considered evil](http://jpetazzo.github.io/2014/06/23/docker-ssh-considered-evil/), but, as of today, I still you this method.
+I know using an `sshd` daemon is [considered evil](http://jpetazzo.github.io/2014/06/23/docker-ssh-considered-evil/), but, as of today, I still use this method.
 
-More info could be found at the [docker-cheat-sheet](https://raw.githubusercontent.com/wsargent/docker-cheat-sheet/master)
+More info and alternatives could be found at the [docker-cheat-sheet](https://raw.githubusercontent.com/wsargent/docker-cheat-sheet/master)
 
